@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import { getProviders, getSession, useSession, signIn, signOut } from "next-auth/react";
 import Head from 'next/head';
 import Image from 'next/image';
@@ -11,7 +10,7 @@ import { useRecoilState } from "recoil";
 import { modalState, postIdState } from "../atoms/modalAtom";
 
 
-const Home: NextPage = ({ trendingResults, followResults, providers }) => {
+const Home = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
 
@@ -39,7 +38,7 @@ const Home: NextPage = ({ trendingResults, followResults, providers }) => {
   )
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context) {
   const trendingResults = await fetch("https://jsonkeeper.com/b/NKEV").then(
     (res) => res.json()
   );
